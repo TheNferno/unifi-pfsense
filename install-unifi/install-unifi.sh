@@ -61,7 +61,7 @@ mongod --dbpath /usr/local/UniFi/data/db --repair
 
 # If an installation exists, we'll need to back up configuration:
 if [ -d /usr/local/UniFi/data ]; then
-  echo "Backing up UniFi data..."
+  echo -n "Backing up UniFi data..."
   BACKUPFILE=/var/backups/unifi-`date +"%Y%m%d_%H%M%S"`.tgz
   /usr/bin/tar -vczf ${BACKUPFILE} /usr/local/UniFi/data
 fi
@@ -106,7 +106,7 @@ fetch ${FREEBSD_PACKAGE_LIST_URL}
 tar vfx packagesite.pkg
 
 AddPkg () {
-  pkgname=$1
+ 	pkgname=$1
   pkg unlock -yq $pkgname
   pkginfo=`grep "\"name\":\"$pkgname\"" packagesite.yaml`
   pkgvers=`echo $pkginfo | pcregrep -o1 '"version":"(.*?)"' | head -1`
@@ -134,12 +134,18 @@ AddPkg freetype2
 AddPkg fontconfig
 AddPkg alsa-lib
 AddPkg mpdecimal
-AddPkg python37
+AddPkg python38
 AddPkg libfontenc
 AddPkg mkfontscale
 AddPkg dejavu
 AddPkg giflib
 AddPkg xorgproto
+AddPkg jpeg-turbo
+AddPkg libdeflate
+AddPkg zstd
+AddPkg jbigkit
+AddPkg tiff
+AddPkg lcms2
 AddPkg libXdmcp
 AddPkg libpthread-stubs
 AddPkg libXau
@@ -156,7 +162,14 @@ AddPkg libXrender
 AddPkg libinotify
 AddPkg javavmwrapper
 AddPkg java-zoneinfo
+AddPkg libXrandr
+AddPkg font-bh-ttf
+AddPkg font-misc-meltho
+AddPkg font-misc-ethiopic
+AddPkg encodings
+AddPkg xorg-fonts-truetype
 AddPkg openjdk8
+AddPkg openjdk11
 AddPkg snappyjava
 AddPkg snappy
 AddPkg cyrus-sasl
